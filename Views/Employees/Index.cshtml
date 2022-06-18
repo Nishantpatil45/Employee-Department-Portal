@@ -32,7 +32,7 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.DeptId)
+                @Html.DisplayNameFor(model => model.DeptName)
             </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.City)
@@ -46,9 +46,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Salary)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -62,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.DeptId)
+                @Html.DisplayFor(modelItem => item.DeptName)
             </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
@@ -76,9 +73,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Salary)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>*@
             <td>
                 <a class="btn btn-secondary btn-success" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> &nbsp;Edit</a> |
                 <a class="btn btn-secondary btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-person-lines-fill"></i> &nbsp;Details</a> |

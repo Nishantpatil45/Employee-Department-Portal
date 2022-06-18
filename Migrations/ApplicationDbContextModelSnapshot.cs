@@ -35,7 +35,7 @@ namespace EmpDeptPortal.Migrations
 
                     b.HasKey("DeptId");
 
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
                 });
 
             modelBuilder.Entity("EmpDeptPortal.Models.Employee", b =>
@@ -73,7 +73,7 @@ namespace EmpDeptPortal.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 #pragma warning restore 612, 618
         }

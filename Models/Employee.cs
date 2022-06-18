@@ -6,6 +6,7 @@ namespace EmpDeptPortal.Models
 {
     public class Employee
     {
+
         [Key]
         [Required]
         public int Id { get; set; }
@@ -24,8 +25,6 @@ namespace EmpDeptPortal.Models
         [DisplayName("Department Name")]
         public int DeptId { get; set; }
 
-        //public Department Department { get; set; }
-    
 
         [Required]
         public string City { get; set; }

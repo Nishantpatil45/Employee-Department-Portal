@@ -19,28 +19,15 @@ namespace EmpDeptPortal.Controllers
             _context = context;
         }
 
-        //public async Task<List<Department>> GetDepartment()
-        //{
-        //    return await _context.Department.Select(x => new Department()
-        //    {
-        //        DeptId = x.DeptId,
-        //        DeptName = x.DeptName
-        //    }).ToList();
-
-        //    _context.Department.Select(c => new SelectListItem
-        //    {
-        //        Value = c.DeptId,
-        //        Text = c.DeptName
-        //    });
-        //}
 
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-              return _context.Employees != null ? 
+            return _context.Employees != null ? 
                           View(await _context.Employees.ToListAsync()) :
             Problem("Entity set 'ApplicationDbContext.Employees'  is null.");
         }
+
 
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -116,10 +103,28 @@ namespace EmpDeptPortal.Controllers
             }
 
             var employee = await _context.Employees.FindAsync(id);
+            var selectedValue = _context.Employees;
             if (employee == null)
             {
                 return NotFound();
             }
+
+            var departmentsList = (from department in _context.Department
+                                   select new SelectListItem()
+                                   {
+                                       Text = department.DeptName,
+                                       Value = department.DeptId.ToString(),
+                                   }).ToList();
+
+            departmentsList.Insert(0, new SelectListItem()
+            {
+                Text = "-- Select --",
+                Value = String.Empty,
+            });
+
+            ViewBag.Departments = departmentsList;
+
+
             return View(employee);
         }
 
@@ -128,7 +133,7 @@ namespace EmpDeptPortal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,DeptId,City,State,PhoneNo,Salary,BirthDate")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,DeptId,City,State,PhoneNo,Salary")] Employee employee)
         {
             if (id != employee.Id)
             {
